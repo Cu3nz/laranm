@@ -30,7 +30,7 @@ class PostSeeder extends Seeder
     private function devolverIdTagRandom(): array{
         $tags = [];
 
-        $arrayTags = Tag::pluck('id') -> toArray(); //? Esto devuelve [1,2,3,4,5]  -> indices del array 0,1,2,3,4
+        $arrayTags = Tag::pluck('id') -> toArray(); //? Esto devuelve [1,2,3,4,5] tantos indice como tags tenga la base de datos -> indices del array 0,1,2,3,4
         $ArrayIndices = array_rand($arrayTags , random_int(2, count($arrayTags))); //? esto devuelve un indice entre 1 y 5 (por el count($arrayTags)) el indice del array [0,3] , [0,3,4] , [1,3,4]; 
         //* Por ejemplo si devolvemos [0,3,4] -> estamos haciendo un array con el id de tag 1 , 4 y 5.
         foreach($ArrayIndices as $indice){

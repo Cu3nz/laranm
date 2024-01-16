@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $posts = Post::where('estado' , 'PUBLICADO') -> orderBy('id', 'desc') -> paginate(5); //? Sube todos los posts que esten publicados 
+    $posts = Post::where('estado' , 'PUBLICADO') -> orderBy('id', 'desc') -> paginate(5); //? Sube todos los posts que  solo esten publicados 
     return view('welcome' , compact('posts'));
-});
+}) -> name('home');
 
 Route::resource('post', PostController::class);
 Route::resource('tags', TagController::class);

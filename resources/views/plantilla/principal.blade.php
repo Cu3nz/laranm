@@ -25,7 +25,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('posts.index')}}" class="block py-2 px-3 rounded text-black dark:text-white" aria-current="page">
+                        <a href="{{route('post.index')}}" class="block py-2 px-3 rounded text-black dark:text-white" aria-current="page">
                             <i class="fas fa-gears mr-2"></i> Gestionar Posts
                         </a>
                     </li>
@@ -35,7 +35,7 @@
         </div>
     </nav>
     <!-- FinNavBar -->
-    <h1 class="mt-4 mb-2 text-center text-xl">@yield('Cabecera')</h1>
+    <h1 class="mt-4 mb-2 text-center text-white text-xl">@yield('cabecera')</h1>
 
     <div class="mx-auto w-3/4 p-8">
         @yield('contenido')
