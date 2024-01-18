@@ -56,6 +56,7 @@
                             <form action="{{route('post.destroy' , $item )}}" method="POST">
                                @csrf
                                @method('delete')
+                               <a href="{{route('post.edit' , $item)}}"><i class="fas fa-edit text-yellow-600"></i></a>
                                 <button type="submit">
                                     <i class="fas fa-trash text-red-400 hover:text-2xl"></i>
                                 </button>

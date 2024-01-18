@@ -40,6 +40,16 @@
     <div class="mx-auto w-3/4 p-8">
         @yield('contenido')
     </div>
-    @yield('mensajesSweet') <!--Menaje de sweetalert-->
+    
+    @if (session('mensaje')) <!--Si existe la variable de sesion info-->
+    <script>
+        Swal.fire({
+  icon: "success",
+  title: "{{session('mensaje')}}",
+  showConfirmButton: false,
+  timer: 1500
+});
+    </script>
+    @endif
 </body>
 </html>

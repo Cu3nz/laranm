@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $posts = Post::where('estado' , 'PUBLICADO') -> orderBy('id', 'desc') -> paginate(5); //? Sube todos los posts que  solo esten publicados 
     return view('welcome' , compact('posts'));
-}) -> name('home');
+}) -> name('home'); //? Le doy el nombre a la ruta welcome
 
 Route::resource('post', PostController::class);
 Route::resource('tags', TagController::class);

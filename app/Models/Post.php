@@ -36,5 +36,18 @@ class Post extends Model
         );
     }
 
+
+    //? Devolvemos todos los id de los tags de imn òst en forma de array 
+
+    public function getPostTagsId():array{
+          // ? Me traigo todos los tag del post y  voy guardando los id de esos posts y lo almaceno en tagPost.
+          $tagPost = [];
+          foreach($this -> tags as $item){ //* $this Para que sea el post que estoy llamando es como si fuera $post 
+              $tagPost[] = $item -> id;
+          }
+
+          return $tagPost;
+    }
+
    
 }
