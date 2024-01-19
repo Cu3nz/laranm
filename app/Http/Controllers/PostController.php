@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -87,7 +88,33 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'titulo' => ['required', 'string', 'min:3', 'unique:posts,titulo,' . $post->id],
+            'contenido' => ['required', 'string', 'min:10'],
+            'imagen' => ['nullable', 'image', 'max:2048'],
+            'estado' => ['nullable'],
+            'tags' => ['required', 'array', 'min:1', 'exists:tags,id']
+        ]);
+
+        $ruta = $post->imagen;
+        if ($request->imagen) {
+            if (basename($post->imagen) != 'default.png') {
+                Storage::delete($post->imagen);
+            }
+            $ruta = $request->imagen->store('posts');
+        }
+        $post->update([
+            'titulo' => $request->titulo,
+            'contenido' => $request->contenido,
+            'imagen' => $ruta,
+            'estado' => ($request->estado) ? "PUBLICADO" : "BORRADOR",
+        ]);
+
+        //? Actualizamos sus etiquetas, esto le quita al post todas las etiquetas y le pone las nuevas
+        $post->tags()->sync($request->tags);
+
+        return redirect() -> route('post.index') -> with('mensaje' , 'Post actualizado correctamente');
+
     }
 
     /**

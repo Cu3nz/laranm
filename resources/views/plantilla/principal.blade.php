@@ -18,18 +18,41 @@
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <div class="hidden w-full md:block md:w-auto" id="navbar-default">
                 <ul
+                
                     class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                     <li>
-                        <a href="{{route('home')}}" class="block py-2 px-3 rounded text-blue-500" aria-current="page"><i
-                                class="fas fa-home mr-2"></i>Home
+                        {{-- todo Si el routeIs deja activa el href que esta seleccionado --}}
+                        <a href="{{route('home')}}" aria-current="page" @class([
+                            'block py-2 px-3 rounded',
+                            'text-blue-500' => request() -> routeIs('home')
+                        ])>
+                            <i class="fas fa-home mr-2"></i>Home
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('post.index')}}" class="block py-2 px-3 rounded text-black dark:text-white" aria-current="page">
+                        <a href="{{route('post.index')}}" aria-current="page" @class([
+                            'block py-2 px-3 rounded',
+                            'text-blue-500' => request() -> routeIs('posts.*')
+                        ])>
                             <i class="fas fa-gears mr-2"></i> Gestionar Posts
                         </a>
                     </li>
-                    
+                    <li>
+                        <a href="{{route('tags.index')}}" aria-current="page" @class([
+                            'block py-2 px-3 rounded',
+                            'text-blue-500' => request() -> routeIs('tags.*')
+                        ])>
+                            <i class="fas fa-tags mr-2"></i> Gestionar Tags
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('mail.pintar')}}" aria-current="page" @class([
+                            'block py-2 px-3 rounded',
+                            'text-blue-500' => request() -> routeIs('tags.*')
+                        ])>
+                            <i class="fas fa-evelope mr-2"></i> Contacta
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

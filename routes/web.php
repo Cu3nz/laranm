@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
 use App\Models\Post;
@@ -23,4 +24,9 @@ Route::get('/', function () {
 }) -> name('home'); //? Le doy el nombre a la ruta welcome
 
 Route::resource('post', PostController::class);
-Route::resource('tags', TagController::class);
+Route::resource('tags', TagController::class) -> except('show');
+
+//? Hacemos dos rutas para el correo
+
+Route::get('contacto' , [ContactoController::class , 'pintarFormulario']) -> name('mail.pintar');
+Route::post('contacto' , [ContactoController::class , 'procesarFormulario']) -> name('mail.enviar');
